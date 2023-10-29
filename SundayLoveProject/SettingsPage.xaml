@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SundayLoveProject.SettingsPage"
+             Title="Settings"
+             BackgroundColor="LightGray">
+    <VerticalStackLayout Margin="5" Spacing="10">
+        <Label Text="Text size:"/>
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Small" FontSize="14" x:Name="SmallButton" Clicked="TextSize_Button_Clicked" BorderWidth="4"/>
+            <Button Text="Medium" FontSize="18" x:Name="MediumButton" Clicked="TextSize_Button_Clicked" BorderWidth="4"/>
+            <Button Text="Large" FontSize="22" x:Name="LargeButton" Clicked="TextSize_Button_Clicked" BorderWidth="4"/>
+        </HorizontalStackLayout>
+        <Label/>
+        <Label Text="Number of days per week a customer can shop:"/>
+        <HorizontalStackLayout Spacing="10">
+            <Button x:Name="Days1Button" Text="1" Clicked="DaysSelected_Button_Clicked" BorderWidth="4"/>
+            <Button x:Name="Days2Button" Text="2" Clicked="DaysSelected_Button_Clicked" BorderWidth="4"/>
+            <Button x:Name="Days3Button" Text="3" Clicked="DaysSelected_Button_Clicked" BorderWidth="4"/>
+            <Button x:Name="Days4Button" Text="4" Clicked="DaysSelected_Button_Clicked" BorderWidth="4"/>
+            <Button x:Name="Days5Button" Text="5" Clicked="DaysSelected_Button_Clicked" BorderWidth="4"/>
+        </HorizontalStackLayout>
+        <Label/>
+        <Label Text="Photo resolution:"/>
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Low (480 x 360)" x:Name="LowResButton" Clicked="PhotoResolution_Button_Clicked" BorderWidth="4"/>
+            <Button Text="Medium (720 x 540)" x:Name="MediumResButton" Clicked="PhotoResolution_Button_Clicked" BorderWidth="4"/>
+            <Button Text="High (960 x 720)" x:Name="HighResButton" Clicked="PhotoResolution_Button_Clicked" BorderWidth="4"/>
+        </HorizontalStackLayout>
+
+        <Label/>
+        <Button Text="Sync with Firebase" Clicked="Sync_Clicked" WidthRequest="250" HorizontalOptions="Start"/>
+        <ProgressBar IsVisible="False" x:Name="SyncProgressBar" WidthRequest="250" HorizontalOptions="Start" />
+    </VerticalStackLayout>
+</ContentPage>

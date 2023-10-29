@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SundayLoveProject.CustomerSearchPage"
+             xmlns:local="clr-namespace:SundayLoveProject"
+             Title="Sunday Love Customer Management Application"
+             BackgroundColor="LightGray" 
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToColorConverter x:Key="ColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Clicked="Settings_Clicked" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    
+    <VerticalStackLayout BackgroundColor="LightGray">
+        
+        <Grid Padding="10" ColumnSpacing="5" RowSpacing="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <SearchBar x:Name="searchBar"  Placeholder="Search for customers..."  
+                   TextChanged="SearchBarTextChanged" HorizontalOptions="Start"
+                   BackgroundColor= "LightGray"
+                   TextColor="Black"
+                   SearchButtonPressed="searchBar_SearchButtonPressed"
+                   Grid.Column="0" Grid.ColumnSpan="2"
+                   Grid.Row="0"  
+                       />
+            <Button Grid.Column="0" Grid.Row="1" Text ="Add New Customer" Clicked="AddCustomerClicked" />
+            <Button Grid.Column="1" Grid.Row="1" Text ="View Report" Clicked = "ViewReportClicked" />
+        </Grid>
+        <ListView x:Name="customerListView" HasUnevenRows="True" VerticalScrollBarVisibility="Always"
+                  ItemTapped="CustomerListViewItemTapped" HorizontalOptions="FillAndExpand"
+                  SeparatorColor="Gray" SeparatorVisibility="Default">
+            <ListView.ItemTemplate> 
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="5" HeightRequest="100" BackgroundColor="{Binding EligibleColor, Converter = {StaticResource ColorConverter}}" ColumnSpacing="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding ImageUrl}" HeightRequest="90" Grid.RowSpan="2"/>
+                            <Label Grid.Column="1" Text="{Binding Name}" TextColor="White" FontSize ="{DynamicResource HeadingFontSize}" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding CustomerComment}" TextColor="White"  VerticalOptions="Center"/>
+                            <Button x:Name="ShopToggleButton" Grid.Column="2" Grid.RowSpan="2" ImageSource="check.png" CornerRadius="10" BackgroundColor ="MintCream" Clicked="CheckButton_Clicked"
+                                    CommandParameter="{Binding .}" WidthRequest="70" HeightRequest="70"/>
+                            <Button Grid.Column="3" Grid.RowSpan="2" ImageSource="delete_icon.png" CornerRadius="10" BackgroundColor ="MintCream" Clicked="DeleteButtonClicked"
+                                    CommandParameter="{Binding .}" WidthRequest="70" HeightRequest="70" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </VerticalStackLayout>
+</ContentPage> 

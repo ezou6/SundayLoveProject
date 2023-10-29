@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SundayLoveProject.CustomerDetailPage"
+             Title="Edit Customer Details:"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:calendar="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
+             BackgroundColor="LightGray" >
+    <ScrollView BackgroundColor="LightGray">
+
+        <VerticalStackLayout BackgroundColor="LightGray">
+            <Label Text="Customer Information:" Margin="10" FontAttributes="Bold" FontSize="{DynamicResource HeadingFontSize}"/>
+            <VerticalStackLayout>
+                <HorizontalStackLayout  Margin="10" Spacing="3">
+                    <Label Text="Name:  " FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Entry x:Name="NameCell"  PlaceholderColor="DarkGray" Placeholder="Enter Name" Text="{Binding Name}" WidthRequest="250" Completed="NameCell_Completed" Loaded="OnNameEntryLoaded">
+                        <Entry.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Entry.Keyboard>
+                    </Entry>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Margin="10" Spacing="3">
+                    <Label Text="Gender:  "  FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Entry x:Name="GenderCell"  PlaceholderColor="DarkGray" Placeholder="Enter Gender " Text="{Binding Gender}" Completed="GenderCell_Completed" >
+                        <Entry.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>Suggestions,CapitalizeWord</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Entry.Keyboard>
+                    </Entry>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Margin="10" Spacing="3">
+                    <Label Text="Zip Code:  "  FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Entry x:Name="ZipCodeCell"  PlaceholderColor="DarkGray" Placeholder="Enter Zip Code " Text="{Binding ZipCode}" Keyboard="Numeric" Completed="ZipCodeCell_Completed"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Margin="10" Spacing="3">
+                    <Label Text="Customer Comment:  "  FontAttributes="Bold" VerticalOptions="Center"/>
+                    <Entry x:Name="CustomerCommentCell"  PlaceholderColor="DarkGray" Placeholder="Enter Customer Comment " Text="{Binding CustomerComment}" Completed="CustomerCommentCell_Completed">
+                        <Entry.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>Suggestions,CapitalizeSentence,Spellcheck</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Entry.Keyboard>
+                    </Entry> 
+                </HorizontalStackLayout>
+                <VerticalStackLayout Margin="10" Spacing="3">
+                    <Label Text="Birthday: " FontAttributes="Bold" />
+                    <HorizontalStackLayout Spacing="30">
+                        <Entry x:Name="DateOfBirthCellMonth" Keyboard="Numeric" SelectionLength="2" Focused="DateOfBirthCellMonth_Focused"
+                            VerticalOptions = "Center" WidthRequest="50" Completed="DateOfBirthCellMonth_Completed" Unfocused="DateOfBirthCellMonth_Unfocused"/>
+                        <Label VerticalOptions ="Center" Text="/" />
+                        <Entry x:Name="DateOfBirthCellDay" Keyboard="Numeric" SelectionLength="2" Focused="DateOfBirthCellDay_Focused"
+                            VerticalOptions = "Center"  WidthRequest="50" Completed="DateOfBirthCellDay_Completed" Unfocused="DateOfBirthCellDay_Unfocused"/>
+                        <Label VerticalOptions = "Center" Text="/" />
+                        <Entry x:Name="DateOfBirthCellYear" Keyboard="Numeric" SelectionLength="4" Focused="DateOfBirthCellYear_Focused"
+                            VerticalOptions = "Center"  WidthRequest="100" Completed="DateOfBirthCellYear_Completed" Unfocused="DateOfBirthCellYear_Unfocused"/>
+                        <DatePicker  MinimumDate="1/1/1900" MaximumDate = "{x:Static sys:DateTime.Today}" 
+                                        x:Name = "DOBPicker"
+                                        Date= "{Binding DateOfBirth}"        
+                                        DateSelected="DOBPickerDateSelected"
+                                        FontSize="{DynamicResource TextFontSize}" HorizontalOptions="Center" VerticalOptions="Center"
+                                        WidthRequest="150"
+                                        />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            <HorizontalStackLayout>
+                <VerticalStackLayout>
+                    <Button Text="Take Profile Picture" Clicked="TakePictureClicked" Margin="10" WidthRequest="350"/>
+                    <ImageButton x:Name="ProfilePic" Source="{Binding ImageUrl}" Margin="10" HeightRequest="150" WidthRequest="150" Clicked="Image_Clicked"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Button Text="Take ID Picture" Clicked="TakePictureClicked" Margin="10" WidthRequest="350"/>
+                    <ImageButton x:Name="IDPic" Source="{Binding IDImageUrl}" Margin="10" HeightRequest="150" WidthRequest="150" Clicked="Image_Clicked"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <Label Text="Shopping History:" FontAttributes="Bold" Margin="10" FontSize="{DynamicResource HeadingFontSize}"/>
+            <calendar:SfCalendar  x:Name="VisitedCalendar" Margin="10"/>
+            <Button Text="Save" Clicked="SaveButtonClicked" Margin="10"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

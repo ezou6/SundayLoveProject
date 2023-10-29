@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SundayLoveProject.CustomerViewPage"
+             BackgroundColor="LightGray" >
+    <ScrollView HorizontalOptions="Fill" BackgroundColor="LightGray" WidthRequest="800">
+        <VerticalStackLayout BackgroundColor="LightGray" HorizontalOptions="CenterAndExpand" Padding = "20">
+            <Label x:Name="CustomerName"/>
+            <Grid RowSpacing="50" ColumnSpacing="3" Margin="10" x:Name="grid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Button x:Name="MondayButton" Grid.Row="0" Grid.Column="0" Clicked="ButtonClicked" />
+                <Button x:Name="TuesdayButton" Grid.Row="0" Grid.Column="1" Clicked="ButtonClicked" />
+                <Button x:Name="WednesdayButton" Grid.Row="0" Grid.Column="2" Clicked="ButtonClicked" />
+                <Button x:Name="ThursdayButton" Grid.Row="0" Grid.Column="3" Clicked="ButtonClicked" />
+                <Button x:Name="FridayButton" Grid.Row="0" Grid.Column="4" Clicked="ButtonClicked" />
+
+                <ImageButton x:Name="Image" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Clicked="Image_Clicked"
+                       Source="{Binding ImageUrl}" HeightRequest="250" WidthRequest="250"/>
+                <ImageButton x:Name="IDImage" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Clicked="Image_Clicked"
+                       Source="{Binding IDImageUrl}" HeightRequest="250" WidthRequest="250" />
+            
+                <VerticalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+                    <Label Text="Name" x:Name="NameLabel" />
+                    <Label Text="Gender" x:Name="GenderLabel" />
+                    <Label Text="Comment" x:Name="CommentLabel" />
+                    <Label Text="ID" x:Name="IDLabel" IsVisible="False" />
+                    <Label Text="Days shopped: " x:Name="DaysShoppedLabel" />
+                    <Label Text="DOB" x:Name="DOBLabel" />
+                    <Label Text="IsEligible" x:Name="IsEligibleLabel" />
+                </VerticalStackLayout>
+                <Button Grid.Row="3" Grid.ColumnSpan="5" x:Name="EditButton" Text="Edit Details" Clicked="EditButtonClicked" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
